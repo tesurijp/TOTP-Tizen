@@ -14,5 +14,8 @@ You need change key info.
   <pre class="key">Service3:AccountC:JBSWY3DPEHPK3PXP</pre>
 ```
 
+service name/ account is just label.
+It is not related to the calculation of TOTP.
+
 # build&amp;install
 You can build and install with Tizen-ide.
