@@ -4,7 +4,7 @@ TOTP client for Tizen (Gear S)
 # setup
 You need change key info.  
  1. Open index.html
- 1. Goto info list and edit these.
+ 1. Goto info list and edit it.  
   Service1/2/3 is service name (eg. Google/Microsoft)  
   Account?? is account in service.  
   last JBSW... is TOTP secret key.  
