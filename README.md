@@ -10,7 +10,15 @@ TOTP client for Tizen (Gear S/S2)
   ....
   
   Service1/2/3 is service name (eg. Google/Microsoft)  
-  Account?? is account in service. (eg. your@mail.com) 
-  last JBSW... is TOTP secret key.  
+  Account?? is account in service. (eg. your@mail.com)  
+  JBSW... is TOTP secret key.  
   service name/ account is just label. It is not related to the calculation of TOTP.  
- 1. Push the file to GEARS2://documents/auth_keyinfo.txt 
+ 1. Push the file to GEAR://documents/auth_keyinfo.txt 
+
+# Gear S
+ You can copy to "documents" folder from PC via USB 
+ 
+# Gear S2
+  You *CANNOT* copy to "documents" folder from PC via USB  
+  You need a utility such as Filesmaster.
+
