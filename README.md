@@ -1,21 +1,16 @@
 # TOTP-Tizen
-TOTP client for Tizen (Gear S)
+TOTP client for Tizen (Gear S2)
 
-# setup
-You need change key info.  
- 1. Open index.html
- 1. Goto info list and edit it.  
+# Setup
+ 1. Find 'TOTP' in GalaxyApps and Install this.
+ 1. You need create key info "auth_keyinfo.txt" like following:  
+  Service1:Account_A:JBSWY3DPEHPK3PXP  
+  Service2:Account@B:JBSWY3DPEHPK3PXP  
+  Service3:AccountC:JBSWY3DPEHPK3PXP  
+  ....
+  
   Service1/2/3 is service name (eg. Google/Microsoft)  
-  Account?? is account in service.  
+  Account?? is account in service. (eg. your@mail.com) 
   last JBSW... is TOTP secret key.  
-```
-  <pre class="key">Service1:Account_A:JBSWY3DPEHPK3PXP</pre>
-  <pre class="key">Service2:Account@B:JBSWY3DPEHPK3PXP</pre>
-  <pre class="key">Service3:AccountC:JBSWY3DPEHPK3PXP</pre>
-```
-
-service name/ account is just label.
-It is not related to the calculation of TOTP.
-
-# build&amp;install
-You can build and install with Tizen-ide.
+  service name/ account is just label. It is not related to the calculation of TOTP.  
+ 1. Push the file to GEARS2://documents/auth_keyinfo.txt 
