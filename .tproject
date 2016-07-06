@@ -6,6 +6,11 @@
         </platform>
     </platforms>
     <package>
-        <blacklist/>
+        <blacklist>
+            <path value=".gitignore" type="file"/>
+            <path value="README.md" type="file"/>
+            <path value="auth_keyinfo.txt" type="file"/>
+        </blacklist>
+        <resFallback autoGen="true"/>
     </package>
 </tproject>
