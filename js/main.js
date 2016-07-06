@@ -1,8 +1,9 @@
 var keyItems = [];
 
-var UpdateRemainTime;
+var UpdateRemainTimeInner;
 var remainTime;
 var progressBarWidget;
+var snapListComponent;
 
 var tokenList = document.getElementById("Tokens");
 
@@ -22,6 +23,14 @@ function calc(key, keytime) {
   }
 }
 
+
+function UpdateRemainTime(nextTime){
+  var currentTime = Math.round(new Date().getTime() / 1000.0);
+  var calc_time = Math.floor(currentTime / 30);
+  var nextTime = 30 - (currentTime % 30);
+  UpdateRemainTimeInner(nextTime);
+  return calc_time;
+}
 function UpdateRemainTimeRectangle(nextTime){
   remainTime.innerHTML = nextTime + REMAIN;
 }
@@ -30,27 +39,27 @@ function UpdateRemainTimeCircle(nextTime){
 }
 
 
-function Update() {
-
-  var currentTime = Math.round(new Date().getTime() / 1000.0);
-  var calc_time = Math.floor(currentTime / 30);
-  var nextTime = 30 - (currentTime % 30);
-  UpdateRemainTime(nextTime);
-
+function InitList() {
+  var calc_time = UpdateRemainTime();
   for(var i=0; i<keyItems.length; i++){
     var item = keyItems[i];
     var token = calc(item.key,calc_time );
     var item_id = "item_"+i;
     var newelm = MakeLiItem(item_id, token,item.service, item.id);
+    tokenList.appendChild(newelm);
+  }
+}
+
+function Update() {
+  var calc_time = UpdateRemainTime();
+  for(var i=0; i<keyItems.length; i++){
+    var item = keyItems[i];
+    var token = calc(item.key,calc_time );
+    var item_id = "item_"+i;
 
     var oldelm =  document.getElementById(item_id);
-    if(oldelm){
-      tokenList.replaceChild(newelm,oldelm);
-    } else {
-      tokenList.appendChild(newelm);
-    }
+    oldelm.childNodes[0].textContent = token;
   }
-
 }
 
 function MakeLiItem (elem_id , token , service, id){
@@ -78,14 +87,15 @@ function init(result) {
   if (tau.support.shape.circle) {
     footer.style.display="none";
     progressBarWidget = new tau.widget.CircleProgressBar(progress, {size: "full"});
-    UpdateRemainTime = UpdateRemainTimeCircle;
-    Update();
+    UpdateRemainTimeInner = UpdateRemainTimeCircle;
+    InitList();
+    snapListComponent = tau.widget.SnapListview(tokenList);
     circle_helper(tau);
   } else {
     progress.style.display="none";
     remainTime = document.getElementById("remainTime");
-    UpdateRemainTime = UpdateRemainTimeRectangle;
-    Update();
+    UpdateRemainTimeInner = UpdateRemainTimeRectangle;
+    InitList();
   }
 
   window.setInterval(Update,1000);
