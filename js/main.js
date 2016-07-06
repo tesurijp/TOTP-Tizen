@@ -9,13 +9,17 @@ var tokenList = document.getElementById("Tokens");
 window.onload = Redraw();
 
 function calc(key, keytime) {
-  var time = ("0000000000000000" + keytime.toString(16)).slice(-16);
-  var hmac = (new jsSHA(time,"HEX")).getHMAC(key, "HEX", "SHA-1", "HEX");
+  try{
+    var time = ("0000000000000000" + keytime.toString(16)).slice(-16);
+    var hmac = (new jsSHA(time,"HEX")).getHMAC(key, "HEX", "SHA-1", "HEX");
 
-  var offset = parseInt(hmac.substring(hmac.length - 1),16);
-  var otp = (parseInt(hmac.substr(offset * 2, 8),16) & parseInt("7fffffff",16)).toString();
+    var offset = parseInt(hmac.substring(hmac.length - 1),16);
+    var otp = (parseInt(hmac.substr(offset * 2, 8),16) & parseInt("7fffffff",16)).toString();
 
-  return otp.slice(-6);
+    return otp.slice(-6);
+  }catch(err){
+    return "000000";
+  }
 }
 
 function UpdateRemainTimeRectangle(nextTime){
@@ -52,6 +56,7 @@ function Update() {
 function MakeLiItem (elem_id , token , service, id){
   var li = document.createElement("li");
   li.setAttribute("class","li-has-multiline");
+  li.setAttribute("style","text-align:center;");
   li.setAttribute("id", elem_id);
   li.innerHTML = token;
 
@@ -69,7 +74,7 @@ function init(result) {
 
   var footer = document.getElementById("footer");
   var progress = document.getElementById("progress");
-  
+
   if (tau.support.shape.circle) {
     footer.style.display="none";
     progressBarWidget = new tau.widget.CircleProgressBar(progress, {size: "full"});

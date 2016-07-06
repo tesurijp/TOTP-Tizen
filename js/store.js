@@ -1,18 +1,32 @@
-function ReadItems (next){
+function ReadError(next){
   var keyItems=[];
-
-  var keys = document.getElementsByClassName("key");
-  for(var i=0;i<keys.length;i++){
-    var key = keys[i];
-    var splited = key.innerHTML.split(":");
-
-    var keyItem = {};
-    keyItem.service = splited[0];
-    keyItem.id = splited[1];
-    keyItem.key = base32tohex(splited[2].toUpperCase());
-    keyItems.push(keyItem);
-  }
+  var keyItem = {};
+  keyItem.service = "NO SERVICE";
+  keyItem.id = "NO ACCOUNT";
+  keyItem.key = "XXXX";
+  keyItems.push(keyItem);
   next(keyItems);
+}
+
+function ReadItems (next){
+  tizen.filesystem.resolve(
+      "documents/auth_keyinfo.txt", function(file) {
+        file.readAsText(function(data) {
+          var keyItems=[];
+          var keys = data.split("/\r\n|\r|\n/");
+          for(var i=0;i<keys.length;i++){
+            var key = keys[i];
+            var splited = key.split(":");
+
+            var keyItem = {};
+            keyItem.service = splited[0];
+            keyItem.id = splited[1];
+            keyItem.key = base32tohex(splited[2].toUpperCase());
+            keyItems.push(keyItem);
+          }
+          next(keyItems);
+        }, function() {ReadError(next);});
+      }, function() { ReadError(next);});
 }
 
 function base32tohex (str) {

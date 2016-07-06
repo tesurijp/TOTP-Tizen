@@ -2,9 +2,13 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://tesuri.org/TOTP" version="1.0.0" viewmodes="fullscreen">
     <tizen:application id="SUP4mJBYlw.TOTP" package="SUP4mJBYlw" required_version="2.2"/>
     <content src="index.html"/>
-    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://tizen.org/feature/screen.shape.circle"/>
+    <feature name="http://tizen.org/feature/screen.shape.rectangle"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.320.320"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.320.480"/>
     <icon src="icon.png"/>
     <name>TOTP</name>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:profile name="wearable"/>
     <tizen:setting background-support="disable" encryption="disable" hwkey-event="enable"/>
 </widget>
