@@ -1,5 +1,5 @@
 # TOTP-Tizen
-TOTP client for Tizen (Gear S2)
+TOTP client for Tizen (Gear S/S2)
 
 # Setup
  1. Find 'TOTP' in GalaxyApps and Install this.
