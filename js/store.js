@@ -13,16 +13,17 @@ function ReadItems (next){
       "documents/auth_keyinfo.txt", function(file) {
         file.readAsText(function(data) {
           var keyItems=[];
-          var keys = data.split("/\r\n|\r|\n/");
+          var keys = data.split(/\r\n|\r|\n/);
           for(var i=0;i<keys.length;i++){
             var key = keys[i];
             var splited = key.split(":");
-
-            var keyItem = {};
-            keyItem.service = splited[0];
-            keyItem.id = splited[1];
-            keyItem.key = base32tohex(splited[2].toUpperCase());
-            keyItems.push(keyItem);
+            if(splited.length === 3){
+              var keyItem = {};
+              keyItem.service = splited[0];
+              keyItem.id = splited[1];
+              keyItem.key = base32tohex(splited[2].toUpperCase());
+              keyItems.push(keyItem);
+            }
           }
           next(keyItems);
         }, function() {ReadError(next);});
