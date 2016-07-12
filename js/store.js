@@ -1,10 +1,19 @@
 function ReadError(next){
   var keyItems=[];
+
   var keyItem = {};
-  keyItem.service = "NO SERVICE";
-  keyItem.id = "NO ACCOUNT";
-  keyItem.key = "XXXX";
+  keyItem.service = "EXAMPLE";
+  keyItem.id = "";
+  keyItem.key = base32tohex("JBSWY3DPEHPK3PXP");
   keyItems.push(keyItem);
+
+  keyItem = {};
+  keyItem.service = "EXAMPLE";
+  keyItem.id = "";
+  keyItem.key = base32tohex("OFKLYERJNLGOIPTA");
+  keyItems.push(keyItem);
+
+  keyItems.example = true;
   next(keyItems);
 }
 
