@@ -84,20 +84,24 @@ function init(result) {
   var footer = document.getElementById("footer");
   var progress = document.getElementById("progress");
 
+  if (result.example) {
+    var li= document.createElement("li");
+    var msg = document.createElement("div");
+    msg.setAttribute("class","ui-marquee ui-marquee-gradient");
+    msg.setAttribute("onclick", "tau.changePage('caution');");
+    msg.innerHTML = "auth_keyinfo.txt not found. You need create and put auth_keyinfo.txt to documents folder";
+    li.appendChild(msg);
+    tokenList.appendChild(li);
+    if (tau.support.shape.circle) {
+      tau.helper.SnapListMarqueeStyle.create(tokenList, { marqueeDelay: 1000, marqueeStyle: "endToEnd" });
+    }
+    tau.changePage("caution");
+  }
 
   if (tau.support.shape.circle) {
     footer.style.display="none";
     progressBarWidget = new tau.widget.CircleProgressBar(progress, {size: "full"});
     UpdateRemainTimeInner = UpdateRemainTimeCircle;
-    if (result.example) {
-      var li= document.createElement("li");
-      var msg = document.createElement("div");
-      msg.setAttribute("class","ui-marquee ui-marquee-gradient");
-      msg.innerHTML = "auth_keyinfo.txt not found. You need create and put auth_keyinfo.txt to documents folder";
-      li.appendChild(msg);
-      tokenList.appendChild(li);
-      tau.helper.SnapListMarqueeStyle.create(tokenList, { marqueeDelay: 1000, marqueeStyle: "endToEnd" });
-    }
     InitList();
     snapListComponent = tau.widget.SnapListview(tokenList);
     circle_helper(tau);
@@ -105,20 +109,6 @@ function init(result) {
     progress.style.display="none";
     remainTime = document.getElementById("remainTime");
     UpdateRemainTimeInner = UpdateRemainTimeRectangle;
-    if (result.example) {
-      var li= document.createElement("li");
-      li.setAttribute("class","li-has-multiline li-has-2line-sub");
-      li.innerHTML = "auth_keyinfo.txt not found";
-      var msg1 = document.createElement("span");
-      msg1.setAttribute("class","ui-li-sub-text li-text-sub");
-      msg1.innerHTML = "You need create auth_keyinfo.txt"
-      var msg2 = document.createElement("span");
-      msg2.setAttribute("class","ui-li-sub-text li-text-sub");
-      msg2.innerHTML = "and put to documents folder";
-      li.appendChild(msg1);
-      li.appendChild(msg2);
-      tokenList.appendChild(li);
-    }
     InitList();
   }
 
