@@ -2,7 +2,8 @@
 TOTP client for Tizen (Gear S/S2)
 
 # Setup
- 1. Find 'TOTP' in GalaxyApps and Install this.
+*Waiting to be published in the GalaxyApps*
+ 1. ~~Find 'TOTP' in GalaxyApps and Install this.~~
  1. You need create key info "auth_keyinfo.txt" like following:  
   Service1:Account_A:JBSWY3DPEHPK3PXP  
   Service2:Account@B:JBSWY3DPEHPK3PXP  
