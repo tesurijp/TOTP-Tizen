@@ -22,3 +22,14 @@ TOTP client for Tizen (Gear S/S2)
   You *CANNOT* copy to "documents" folder from PC via USB  
   You need a utility such as Filesmaster.
 
+
+# For Gear S2 v1.1
+This is not yet release GalaxyApps
+
+It added a place where auth_keyinfo can be placed.
+
+ 1. copy auth_keyinfo.txt to GEAR://documents/
+ 1. copy auth_keyinfo.txt to GEAR://downloads/
+ 1. copy auth_keyinfo.mp3 to GEAR://music/
+    1. rename auth_keyinfo.txt to auth_keyinfo.mp3 (Change only the file name, do not change contents)
+    1. push it as music data by GearManager 
