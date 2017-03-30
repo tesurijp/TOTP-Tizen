@@ -8,6 +8,7 @@
     <feature name="http://tizen.org/feature/screen.size.normal.320.480"/>
     <icon src="icon.png"/>
     <name>TOTP</name>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:profile name="wearable"/>
     <tizen:setting background-support="disable" encryption="disable" hwkey-event="enable"/>
