@@ -51,11 +51,16 @@ function ReadItems(next){
 			          for(var i=0;i<keys.length;i++){
 			            var key = keys[i];
 			            var splited = key.split(":");
-			            if(splited.length === 3){
+			            if(splited.length >= 3){
 			              var keyItem = {};
 			              keyItem.service = splited[0];
 			              keyItem.id = splited[1];
 			              keyItem.key = base32tohex(splited[2].toUpperCase());
+			              if(splited.length === 4){
+			                keyItem.digits = splited[3];
+			              } else {
+			                keyItem.digits = 6;
+			              }
 			              keyItems.push(keyItem);
 			            }
 			          }

@@ -9,7 +9,7 @@ var tokenList = document.getElementById("Tokens");
 
 window.onload = Redraw();
 
-function calc(key, keytime) {
+function calc(key, keytime, keylength) {
   try{
     var time = ("0000000000000000" + keytime.toString(16)).slice(-16);
     var hmac = (new jsSHA(time,"HEX")).getHMAC(key, "HEX", "SHA-1", "HEX");
@@ -17,7 +17,7 @@ function calc(key, keytime) {
     var offset = parseInt(hmac.substring(hmac.length - 1),16);
     var otp = (parseInt(hmac.substr(offset * 2, 8),16) & parseInt("7fffffff",16)).toString();
 
-    return otp.slice(-6);
+    return otp.slice(keylength*-1);
   }catch(err){
     return "000000";
   }
@@ -43,7 +43,7 @@ function InitList() {
   var calc_time = UpdateRemainTime();
   for(var i=0; i<keyItems.length; i++){
     var item = keyItems[i];
-    var token = calc(item.key,calc_time );
+    var token = calc(item.key,calc_time,item.digits );
     var item_id = "item_"+i;
     var newelm = MakeLiItem(item_id, token,item.service, item.id);
     tokenList.appendChild(newelm);
@@ -54,7 +54,7 @@ function Update() {
   var calc_time = UpdateRemainTime();
   for(var i=0; i<keyItems.length; i++){
     var item = keyItems[i];
-    var token = calc(item.key,calc_time );
+    var token = calc(item.key,calc_time,item.digits );
     var item_id = "item_"+i;
 
     var oldelm =  document.getElementById(item_id);
