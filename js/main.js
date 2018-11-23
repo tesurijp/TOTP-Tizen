@@ -119,6 +119,12 @@ function init(result) {
 
 function Redraw() {
     tokenList.innerHTML = "";
-    document.getElementById("Title").innerHTML=TITLE;
+    try{
+        document.getElementById("Title").innerHTML=TITLE;
+    }catch{
+        TITLE = "Token";
+        REMAIN = " sec. left";
+        document.getElementById("Title").innerHTML=TITLE;
+    }
     ReadItems(init);
 }
