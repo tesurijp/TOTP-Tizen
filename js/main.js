@@ -17,9 +17,11 @@ function calc(key, keytime, keylength) {
     var offset = parseInt(hmac.substring(hmac.length - 1),16);
     var otp = (parseInt(hmac.substr(offset * 2, 8),16) & parseInt("7fffffff",16)).toString();
 
-    return otp.slice(keylength*-1);
+    var spaces = new RegExp('.{' + keylength/2 + '}$');
+
+    return otp.slice(keylength*-1).replace(spaces, ' $&');
   }catch(err){
-    return "000000";
+    return "000 000";
   }
 }
 
