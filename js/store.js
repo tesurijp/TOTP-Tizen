@@ -73,14 +73,23 @@ function base32tohex (str) {
 
     var bits = "";
     for(var i = 0; i < str.length; i++) {
-        var val = base32chars.indexOf(str[i]);
-        bits += ("00000" + val.toString(2)).slice(-5);
+        if (str[i] === " ") {
+            continue;
+        } else if (str[i] === "="){
+            bits += "00000";
+        } else {
+            var val = base32chars.indexOf(str[i]);
+            bits += ("00000" + val.toString(2)).slice(-5);
+        }
     }
 
     var hex = "";
     for( i = 0; i + 4 <= bits.length; i+=4) {
         var chunk = bits.substr(i, 4);
         hex += parseInt(chunk, 2).toString(16) ;
+    }
+    if (hex.length % 2 !== 0){
+        hex += "0";
     }
     return hex;
 }
