@@ -121,7 +121,7 @@ function Redraw() {
     tokenList.innerHTML = "";
     try{
         document.getElementById("Title").innerHTML=TITLE;
-    }catch{
+    }catch(e){
         TITLE = "Token";
         REMAIN = " sec. left";
         document.getElementById("Title").innerHTML=TITLE;
